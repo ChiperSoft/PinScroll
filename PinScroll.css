@@ -1,0 +1,4 @@
+
+#Pintray, #Pintray>li {list-style:none;padding:0;margin:0;overflow:visible;}
+#Pintray {position:fixed;top:0;right:1px;height:100%;z-index:200;}
+#Pintray>li {position:absolute;top:0;right:0;cursor:pointer;}

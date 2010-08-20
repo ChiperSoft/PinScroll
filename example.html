@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html lang="ru-RU">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css" media="screen">
+		div {margin:30px 0px;}
+		div.red 		{background:red;		height: 700px;}
+		div.green 		{background:green;		height:1000px;}
+		div.blue 		{background:blue;		height: 200px;}
+		div.orange 		{background:orange;		height: 100px;}
+		div.gray 		{background:gray;		height: 500px;}
+		div.pink		{background:#FFC0CB;	height:  20px;}
+		div.eggplant	{background:#400080;	height:100px;}
+		div.lavender	{background:#C6F;		height:820px;}
+		
+		#bluepin {border:2px solid white;background:blue;color:white;padding:3px;-webkit-box-shadow:0px 1px 2px black;border-radius:3px;}
+		button {white-space:nowrap;}
+	</style>
+	<link rel="stylesheet" href="PinScroll.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<script src="libs/prototype-1.6.1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="libs/effects.js" type="text/javascript" charset="utf-8"></script>
+	<script src="PinScroll.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<a id="bluepin" style="display:none">Blue?</a>
+	<button style="display:none">A Pin</button>
+	
+	<h2>Click a box to make it collapse</h2>
+	
+	<div class="gray"></div>
+	<div class="pink"></div>
+	<div class="red"></div>
+	<div class="lavender"></div>
+	<div class="blue"></div>
+	<div class="green"></div>
+	<div class="orange"></div>
+	<div class="eggplant"></div>
+	<hr>
+	
+	<script type="text/javascript" charset="utf-8">
+		var ps = new PinScroll({
+			'hr':{image:'pins/pin_gray.png'},		//anchor elements are referenced via css selectors
+			'div':{image:'pins/pin_empty.png'},		//document order doesn't matter, only the order in the object
+			'div.red':{image:'pins/pin_red.png'},	//this line overwrites the pin created by 'div'
+			'div.orange':{selector:'button'},		//use a css selector to identify the pin contents
+			'div.blue':{element:'bluepin'},			//use an element id to get the pin contents
+			'div.lavender':{element:document.body.childElements()[0]},	//or add the element directly by variable
+													//If the element was already in use as a pin, it gets cloned
+			'div.eggplant':null						//remove pins created by higher up in the array
+		});
+		
+		document.observe('click', function (event) {
+			var element = event.element();
+			
+			if (element.tagName=='DIV') element.blindUp({afterUpdate:ps.update.bind(ps), afterFinish:ps.update.bind(ps)}) 
+			//use the pinscroller's update event in conjunction with scriptaculous effects for animated updates
+		})
+	</script>
+</body>
+</html>

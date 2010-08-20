@@ -1,0 +1,32 @@
+PinScroll requires the presence of Prototype 1.6 or later to function.
+Script.aculo.us 1.8 or later is required for animated scrolling.
+The css directives inside the included PinScroll.css must be present on the page for the markers to display correctly.
+
+At the bottom of the page body or in an onload/dom:loaded event:
+
+	var myscroller = new PinScroll( anchorElements [, options] );
+	
+anchorElements is a hashed array object consisting of css selector / object pairs, like so:
+
+	'selector':{ pinContentType (image|selector|element) : pinContent }
+	
+	pinContent varies according to the pinContentType:
+		image: 	  the path to an image file
+		selector: a css selector string
+		element:  either a DOMElement object or an id string
+
+options is an optional object containing any of the following key/value pairs:
+	
+	pinTrayTag             Tag type used for creating the pin tray. Default is 'ul'
+	pinTrayID              ID name used for the pin tray Default is 'Pintray'
+	pinTrayPadding         Space in pixels to appear at the top and bottom of the scrollbar. Default is 10
+	pinTrayPaddingTop      Overrides the padding value for the top of the scrollbar
+	pinTrayPaddingBottom   Overrides the padding value for the bottom of the scrollbar
+	pinTag                 Tag type used for creating the individual pins. Default is 'li'
+	loadDelay              Time (in milliseconds) before the pins appear. Default is 1000, minimum is 200
+	
+	The following values only apply is Scriptaculous is loaded.
+	scrollDuration         Time (in seconds) the scrolling animation will take.  Default is 0.5
+	fadeInDuration         Time (in seconds) for the fade in animation after page load. Default is 1
+	
+See the included example.html for usage examples.
